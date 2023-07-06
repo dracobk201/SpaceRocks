@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6787659835798222618}
+  - component: {fileID: 6697612688265601820}
   - component: {fileID: 3488017568618630571}
   - component: {fileID: 8559409175483491261}
   m_Layer: 6
@@ -116,8 +117,22 @@ Transform:
   m_Children:
   - {fileID: 8747226331308816753}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6697612688265601820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903416532253171651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3422f53e90a5645b7de4691aeefb41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 9
+  lifespan: 3
 --- !u!50 &3488017568618630571
 Rigidbody2D:
   serializedVersion: 4
@@ -144,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8559409175483491261
 BoxCollider2D:
   m_ObjectHideFlags: 0
