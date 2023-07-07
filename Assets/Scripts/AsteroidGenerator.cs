@@ -4,7 +4,7 @@ public class AsteroidGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject[] asteroidPrefabs;
     private Camera gameCamera;
-    private float timer = 3f;
+    private readonly float timer = 3f;
     private float actualTime;
 
     private void Awake()
@@ -28,12 +28,26 @@ public class AsteroidGenerator : MonoBehaviour
         for (int i = 0; i < generationAmount; i++)
         {
             int randomIndex = Random.Range(0, asteroidPrefabs.Length);
-            Vector3 randomPosition = GetRandomPosition();
+            Vector3 randomPosition = GetRandomPositionOutsideScreen();
             GameObject asteroid = Instantiate(asteroidPrefabs[randomIndex], randomPosition, Quaternion.identity, transform);
+
+            float asteroidMovementSpeed = Random.Range(0.00001f, 2f);
+            float asteroidRotationSpeed = Random.Range(3f, 50f);
+            int asteroidRotationOrientation;
+            if (Random.value > 0.5f)
+            {
+                asteroidRotationOrientation = 1;
+            }
+            else
+            {
+                asteroidRotationOrientation = -1;
+            }
+
+            asteroid.GetComponent<AsteroidBehaviour>().Setup(asteroidMovementSpeed, asteroidRotationSpeed, asteroidRotationOrientation, GetRandomPositionInsideScreen());
         }
     }
 
-    private Vector3 GetRandomPosition()
+    private Vector3 GetRandomPositionOutsideScreen()
     {
         Vector3 screenPosition = Vector3.zero;
         float margin = 20;
@@ -62,6 +76,18 @@ public class AsteroidGenerator : MonoBehaviour
                 screenPosition.y = -margin;
             }
         }
+        screenPosition.z = gameCamera.farClipPlane / 2;
+        Vector3 worldPosition = gameCamera.ScreenToWorldPoint(screenPosition);
+
+        return worldPosition;
+    }
+
+    private Vector3 GetRandomPositionInsideScreen()
+    {
+        Vector3 screenPosition = Vector3.zero;
+
+        screenPosition.y = Random.Range(0, Screen.height);
+        screenPosition.x = Random.Range(0, Screen.width);
         screenPosition.z = gameCamera.farClipPlane / 2;
         Vector3 worldPosition = gameCamera.ScreenToWorldPoint(screenPosition);
 
