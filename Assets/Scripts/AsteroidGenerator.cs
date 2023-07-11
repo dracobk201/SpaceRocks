@@ -25,13 +25,14 @@ public class AsteroidGenerator : MonoBehaviour
 
     private void GenerateAsteroids(int generationAmount = 1)
     {
+        //TODO: Make this with a Object Pool and swappable sprites
         for (int i = 0; i < generationAmount; i++)
         {
             int randomIndex = Random.Range(0, asteroidPrefabs.Length);
             Vector3 randomPosition = GetRandomPositionOutsideScreen();
             GameObject asteroid = Instantiate(asteroidPrefabs[randomIndex], randomPosition, Quaternion.identity, transform);
 
-            float asteroidMovementSpeed = Random.Range(0.00001f, 2f);
+            float asteroidMovementSpeed = Random.Range(0.00001f, 0.5f);
             float asteroidRotationSpeed = Random.Range(3f, 50f);
             int asteroidRotationOrientation;
             if (Random.value > 0.5f)
@@ -43,7 +44,7 @@ public class AsteroidGenerator : MonoBehaviour
                 asteroidRotationOrientation = -1;
             }
 
-            asteroid.GetComponent<AsteroidBehaviour>().Setup(asteroidMovementSpeed, asteroidRotationSpeed, asteroidRotationOrientation, GetRandomPositionInsideScreen());
+            asteroid.GetComponent<AsteroidBehaviour>().Setup(10f,asteroidMovementSpeed, asteroidRotationSpeed, asteroidRotationOrientation, GetRandomPositionInsideScreen());
         }
     }
 

@@ -22,4 +22,12 @@ public class ProjectileBehaviour : MonoBehaviour
         yield return new WaitForSeconds(lifespan);
         gameObject.SetActive(false);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
