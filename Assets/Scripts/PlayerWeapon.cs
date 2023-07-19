@@ -4,23 +4,16 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private Transform shipGun;
-    [SerializeField] private InputController inputController;
     [SerializeField] private ObjectPool projectilePool;
     [SerializeField] private float weaponCooldownTimer;
     private bool canShoot;
 
     private void OnEnable()
     {
-        inputController.shootAction += Shoot;
         canShoot = true;
     }
 
-    private void OnDisable()
-    {
-        inputController.shootAction -= Shoot;
-    }
-
-    private void Shoot()
+    public void Shoot()
     {
         if (!canShoot)
         {
