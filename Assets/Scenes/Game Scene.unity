@@ -1067,6 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205b880bc91a55048ae4a15d0b6a9c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 52b67556a5218274a80e5c22c9189e33, type: 2}
   asteroidPrefabs:
   - {fileID: 8923285805270140854, guid: 6c9bd64f82028644f86ff5928bd9c03e, type: 3}
   - {fileID: 3849674670036439972, guid: e9da82e112bdc7041808ee2bf9c4ad3f, type: 3}
@@ -1181,6 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458543e0bac28e444bc4fab584e09ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 52b67556a5218274a80e5c22c9189e33, type: 2}
   inputController: {fileID: 1967954560}
   playerWeapon: {fileID: 8644951677027093426}
   playerMovement: {fileID: 8644951677027093427}
@@ -1338,6 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97835e9e8fa349e48b3a2d0110cbb0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 52b67556a5218274a80e5c22c9189e33, type: 2}
   shipGun: {fileID: 8829773289354646743}
   projectilePool: {fileID: 33506701}
   weaponCooldownTimer: 0.2
@@ -1353,6 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5b70afcd9ff854899814a3f17d0cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 52b67556a5218274a80e5c22c9189e33, type: 2}
   movementSpeed: 5
 --- !u!4 &8829773289354646743
 Transform:

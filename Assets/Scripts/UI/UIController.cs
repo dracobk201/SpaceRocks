@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private GameStatusReference gameStatus;
     [SerializeField] private List<BaseUI> uiPanels;
 
     private void Awake()
     {
         foreach (var uiPanel in uiPanels)
         {
-            uiPanel.Setup(this);
+            uiPanel.Setup(this, gameStatus);
         }
     }
 
@@ -25,7 +26,7 @@ public class UIController : MonoBehaviour
         else
         {
             int index = uiPanels.FindIndex(ui => ui.gameObject.name.Equals(targetPanel.ToString()));
-            Debug.Log($"{index} - {targetPanel}");
+            
             if (index == -1)
             {
                 Debug.LogError($"Target Panel, {targetPanel}, doesn't exist");

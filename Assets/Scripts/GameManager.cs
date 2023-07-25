@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameStatusReference gameStatus;
     [Header("Input and Player")]
     [SerializeField] private InputController inputController;
     [SerializeField] private PlayerWeapon playerWeapon;

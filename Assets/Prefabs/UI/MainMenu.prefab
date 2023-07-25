@@ -950,6 +950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23ddb3acfda7184fb7dd9da2f39af1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 0}
+  uIController: {fileID: 0}
   panelCanvasGroup: {fileID: 9037038171597657983}
   playButton: {fileID: 6616974458987456197}
   optionsButton: {fileID: 32289547632701090}

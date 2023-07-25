@@ -22,5 +22,6 @@ public class GameOverlayPanelBehaviour : BaseUI
     private void OnPauseButton()
     {
         Debug.Log("Pause");
+        gameStatus.Status = GameStatus.InPause;
     }
 }

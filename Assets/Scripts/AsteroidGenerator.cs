@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AsteroidGenerator : MonoBehaviour
 {
+    [SerializeField] private GameStatusReference gameStatus;
     [SerializeField] private GameObject[] asteroidPrefabs;
     private Camera gameCamera;
     private readonly float timer = 3f;
@@ -15,6 +16,11 @@ public class AsteroidGenerator : MonoBehaviour
 
     private void Update()
     {
+        if (!gameStatus.Status.Equals(GameStatus.InGame))
+        {
+            return;
+        }
+
         actualTime += Time.deltaTime;
         if (actualTime > timer)
         {

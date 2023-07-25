@@ -2,11 +2,13 @@ using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
 {
+    [HideInInspector] public GameStatusReference gameStatus;
     [HideInInspector] public UIController uIController;
     public CanvasGroup panelCanvasGroup;
 
-    public void Setup(UIController controller)
+    public void Setup(UIController controller, GameStatusReference status)
     {
+        gameStatus = status;
         uIController = controller;
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    [SerializeField] private GameStatusReference gameStatus;
     [SerializeField] private Transform shipGun;
     [SerializeField] private ObjectPool projectilePool;
     [SerializeField] private float weaponCooldownTimer;
@@ -15,7 +16,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Shoot()
     {
-        if (!canShoot)
+        if (!canShoot && !gameStatus.Status.Equals(GameStatus.InGame))
         {
             return;
         }
