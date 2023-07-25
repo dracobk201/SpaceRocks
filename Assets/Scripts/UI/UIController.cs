@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private GameStatusReference gameStatus;
+    [SerializeField] private GameSettingsReference gameStatus;
     [SerializeField] private List<BaseUI> uiPanels;
 
     private void Awake()

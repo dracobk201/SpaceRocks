@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AsteroidBehaviour : MonoBehaviour
 {
+    [SerializeField] private GameSettingsReference gameStatus;
+    [SerializeField] private int damageToGive;
+    [SerializeField] private int pointsToGive;
     private float lifespan;
     private float movementSpeed;
     private float rotationSpeed;
@@ -17,6 +20,7 @@ public class AsteroidBehaviour : MonoBehaviour
         rotationSpeed = asteroidRotationSpeed;
         targetDirection = givenDirection - transform.position;
         rotationOrientation = asteroidOrientation;
+
         StopCoroutine(SelfDestroyAsteroid());
         StartCoroutine(SelfDestroyAsteroid());
     }
@@ -29,12 +33,22 @@ public class AsteroidBehaviour : MonoBehaviour
 
     private void Move()
     {
+        if (!gameStatus.Status.Equals(GameStatus.InGame))
+        {
+            return;
+        }
+
         Vector3 movement = movementSpeed * Time.deltaTime * targetDirection;
         transform.position += movement;
     }
 
     private void Rotate()
     {
+        if (!gameStatus.Status.Equals(GameStatus.InGame))
+        {
+            return;
+        }
+
         Vector3 newRotation = new Vector3(0, 0, rotationSpeed * Time.deltaTime * rotationOrientation);
         transform.Rotate(newRotation);
     }
@@ -47,9 +61,17 @@ public class AsteroidBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("ProjectilePlayer"))
         {
-            gameObject.SetActive(false);
+            gameStatus.UpdateAsteroidCounter();
+            gameStatus.UpdatePoints(pointsToGive);
         }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            gameStatus.UpdateLife(damageToGive);
+        }
+
+        gameObject.SetActive(false);
     }
 }

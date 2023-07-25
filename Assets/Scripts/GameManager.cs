@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameStatusReference gameStatus;
+    [SerializeField] private GameSettingsReference gameStatus;
     [Header("Input and Player")]
     [SerializeField] private InputController inputController;
     [SerializeField] private PlayerWeapon playerWeapon;
@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        gameStatus.Restart();
         uiController.ShowHidePanel(UIPanel.None);
     }
 

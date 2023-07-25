@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private GameStatusReference gameStatus;
+    [SerializeField] private GameSettingsReference gameStatus;
     [SerializeField] private float movementSpeed;
 
     public void Moving(Vector2 movementAxis)

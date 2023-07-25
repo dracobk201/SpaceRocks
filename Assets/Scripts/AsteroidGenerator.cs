@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AsteroidGenerator : MonoBehaviour
 {
-    [SerializeField] private GameStatusReference gameStatus;
+    [SerializeField] private GameSettingsReference gameStatus;
     [SerializeField] private GameObject[] asteroidPrefabs;
     private Camera gameCamera;
     private readonly float timer = 3f;
@@ -37,7 +37,7 @@ public class AsteroidGenerator : MonoBehaviour
             int randomIndex = Random.Range(0, asteroidPrefabs.Length);
             Vector3 randomPosition = GetRandomPositionOutsideScreen();
             GameObject asteroid = Instantiate(asteroidPrefabs[randomIndex], randomPosition, Quaternion.identity, transform);
-
+            asteroid.name = $"{asteroidPrefabs[randomIndex].name} {i}";
             float asteroidMovementSpeed = Random.Range(0.00001f, 0.5f);
             float asteroidRotationSpeed = Random.Range(3f, 50f);
             int asteroidRotationOrientation;

@@ -19,6 +19,12 @@ public class GameOverlayPanelBehaviour : BaseUI
         pauseButton.onClick.RemoveListener(OnPauseButton);
     }
 
+    private void Update()
+    {
+        currentLifeText.text = gameStatus.ActualLife.ToString();
+        currentPointsText.text = $"{gameStatus.ActualPoints:n0}"; ;
+    }
+
     private void OnPauseButton()
     {
         Debug.Log("Pause");

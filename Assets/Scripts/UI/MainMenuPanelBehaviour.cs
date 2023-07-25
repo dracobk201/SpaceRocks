@@ -23,7 +23,6 @@ public class MainMenuPanelBehaviour : BaseUI
 
     private void OnPlayButton()
     {
-        Debug.Log("Play");
         gameStatus.Status = GameStatus.InGame;
         uIController.ShowHidePanel(UIPanel.GameOverlay);
     }

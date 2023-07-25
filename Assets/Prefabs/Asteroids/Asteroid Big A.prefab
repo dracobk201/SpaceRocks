@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e42434db4105654b8e167f039810b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 6c8880ec36f6ebb48a6b78709bbe43c8, type: 2}
+  damageToGive: 8
+  pointsToGive: 1000
 --- !u!212 &2108929508630101674
 SpriteRenderer:
   m_ObjectHideFlags: 0

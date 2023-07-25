@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b013e42d46bab48a0f11f008a5e148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStatus: {fileID: 11400000, guid: 52b67556a5218274a80e5c22c9189e33, type: 2}
+  gameStatus: {fileID: 11400000, guid: 6c8880ec36f6ebb48a6b78709bbe43c8, type: 2}
   uiPanels:
   - {fileID: 4730406696789325235}
   - {fileID: 8955229286171432698}
