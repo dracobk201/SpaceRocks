@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameSettingsReference gameStatus;
     [Header("Input and Player")]
     [SerializeField] private InputController inputController;
+    [SerializeField] private AsteroidGenerator asteroidGenerator;
     [SerializeField] private PlayerWeapon playerWeapon;
     [SerializeField] private PlayerMovement playerMovement;
     [Header("UI")]
@@ -14,6 +15,15 @@ public class GameManager : MonoBehaviour
     {
         gameStatus.Restart();
         uiController.ShowHidePanel(UIPanel.None);
+    }
+
+    private void Update()
+    {
+        if (gameStatus.ActualLife <=  0 && !gameStatus.Status.Equals(GameStatus.GameOver))
+        {
+            gameStatus.Status = GameStatus.GameOver;
+            uiController.ShowHidePanel(UIPanel.GameOver);
+        }
     }
 
     private void OnEnable()

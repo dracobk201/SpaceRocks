@@ -27,28 +27,22 @@ public class AsteroidBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (!gameStatus.Status.Equals(GameStatus.InGame))
+        {
+            return;
+        }
         Move();
         Rotate();
     }
 
     private void Move()
     {
-        if (!gameStatus.Status.Equals(GameStatus.InGame))
-        {
-            return;
-        }
-
         Vector3 movement = movementSpeed * Time.deltaTime * targetDirection;
         transform.position += movement;
     }
 
     private void Rotate()
     {
-        if (!gameStatus.Status.Equals(GameStatus.InGame))
-        {
-            return;
-        }
-
         Vector3 newRotation = new Vector3(0, 0, rotationSpeed * Time.deltaTime * rotationOrientation);
         transform.Rotate(newRotation);
     }
