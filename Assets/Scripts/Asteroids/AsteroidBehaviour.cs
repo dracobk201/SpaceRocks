@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class AsteroidBehaviour : MonoBehaviour
     private float lifespan;
     private float movementSpeed;
     private float rotationSpeed;
+    public float timeSpeedFactor;
     private float rotationOrientation;
     private Vector3 targetDirection;
 
@@ -33,18 +33,24 @@ public class AsteroidBehaviour : MonoBehaviour
         }
         Move();
         Rotate();
+        CheckTime();
     }
 
     private void Move()
     {
-        Vector3 movement = movementSpeed * Time.deltaTime * targetDirection;
+        Vector3 movement = movementSpeed * Time.deltaTime * targetDirection * timeSpeedFactor;
         transform.position += movement;
     }
 
     private void Rotate()
     {
-        Vector3 newRotation = new Vector3(0, 0, rotationSpeed * Time.deltaTime * rotationOrientation);
+        Vector3 newRotation = new Vector3(0, 0, rotationSpeed * Time.deltaTime * rotationOrientation * timeSpeedFactor);
         transform.Rotate(newRotation);
+    }
+
+    private void CheckTime()
+    {
+        timeSpeedFactor = gameStatus.GetTimeStep();
     }
 
     private IEnumerator SelfDestroyAsteroid()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameSettingsReference : ScriptableObject
 {
     public GameStatus Status;
+    public float ActualTime;
     public int ActualLife;
     public int ActualPoints;
     public int AsteroidsDestroyed;
@@ -13,6 +14,7 @@ public class GameSettingsReference : ScriptableObject
     public void Restart()
     {
         Status = GameStatus.InMenu;
+        ActualTime = 90;
         ActualLife = 100;
         ActualPoints = 0;
         AsteroidsDestroyed = 0;
@@ -44,5 +46,11 @@ public class GameSettingsReference : ScriptableObject
         AsteroidsDestroyed++;
         InCombo = true;
         PointsMultiplier = (float) AsteroidsDestroyed / 100;
+    }
+
+    public float GetTimeStep()
+    {
+        var step = ActualTime / 90;
+        return Mathf.Lerp(2.5f, 1, step);
     }
 }

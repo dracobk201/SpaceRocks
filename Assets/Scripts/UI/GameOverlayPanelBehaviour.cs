@@ -22,7 +22,11 @@ public class GameOverlayPanelBehaviour : BaseUI
     private void Update()
     {
         currentLifeText.text = gameStatus.ActualLife.ToString();
-        currentPointsText.text = $"{gameStatus.ActualPoints:n0}"; ;
+        currentPointsText.text = $"{gameStatus.ActualPoints:n0}";
+
+        int seconds = (int)gameStatus.ActualTime % 60;
+        int minutes = (int)gameStatus.ActualTime / 60;
+        remainingTimeText.text = $"{minutes}:{seconds}";
     }
 
     private void OnPauseButton()
