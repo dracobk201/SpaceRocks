@@ -33,15 +33,12 @@ public class UIController : MonoBehaviour
                 return;
             }
 
-            uiPanels[index].ShowHideCanvasGroup(true);
-            for (int i = 0; i < uiPanels.Count; i++)
+            foreach (var uiPanel in uiPanels)
             {
-                if (i == index)
-                {
-                    break;
-                }
-                uiPanels[i].ShowHideCanvasGroup(false);
+                uiPanel.ShowHideCanvasGroup(false);
             }
+
+            uiPanels[index].ShowHideCanvasGroup(true);
         }
     }
 }
