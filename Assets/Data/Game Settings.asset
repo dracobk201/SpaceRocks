@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a999fe77a14a6e4fb15e8a2432b324f, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  Status: 1
-  ActualLife: 100
-  ActualPoints: 0
-  AsteroidsDestroyed: 0
-  InCombo: 0
-  PointsMultiplier: 0
+  MaxTime: 90
+  MaxLife: 50
+  MaxMultiplier: 5
+  Status: 3
+  ActualTime: 64.14933
+  ActualLife: -5
+  ActualPoints: 75060
+  AsteroidsDestroyed: 27
+  InCombo: 1
+  PointsMultiplier: 0.27

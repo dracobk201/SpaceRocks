@@ -7,6 +7,7 @@ public class AsteroidGenerator : MonoBehaviour
     private Camera gameCamera;
     private readonly float timer = 3f;
     private float actualTime;
+    public float timeSpeedFactor;
 
     private void Awake()
     {
@@ -21,12 +22,19 @@ public class AsteroidGenerator : MonoBehaviour
             return;
         }
 
-        actualTime += Time.deltaTime;
+        actualTime += Time.deltaTime * timeSpeedFactor;
         if (actualTime > timer)
         {
-            GenerateAsteroids(3);
+            int amount = (int)timeSpeedFactor * 3;
+            GenerateAsteroids(amount);
             actualTime = 0f;
         }
+        CheckTime();
+    }
+
+    private void CheckTime()
+    {
+        timeSpeedFactor = gameStatus.GetTimeStep();
     }
 
     private void GenerateAsteroids(int generationAmount = 1)

@@ -3,6 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Game Settings", menuName = "ScriptableObjects/Game Settings Data")]
 public class GameSettingsReference : ScriptableObject
 {
+    [Header("Base")]
+    public float MaxTime;
+    public int MaxLife;
+    public float MaxMultiplier;
+
+    [Header("Updatable Variables")]
     public GameStatus Status;
     public float ActualTime;
     public int ActualLife;
@@ -14,8 +20,8 @@ public class GameSettingsReference : ScriptableObject
     public void Restart()
     {
         Status = GameStatus.InMenu;
-        ActualTime = 90;
-        ActualLife = 100;
+        ActualTime = MaxTime;
+        ActualLife = MaxLife;
         ActualPoints = 0;
         AsteroidsDestroyed = 0;
         InCombo = false;
@@ -50,7 +56,7 @@ public class GameSettingsReference : ScriptableObject
 
     public float GetTimeStep()
     {
-        var step = ActualTime / 90;
-        return Mathf.Lerp(2.5f, 1, step);
+        var step = ActualTime / MaxTime;
+        return Mathf.Lerp(MaxMultiplier, 1, step);
     }
 }
