@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AsteroidGenerator : MonoBehaviour
 {
+    public event System.Action AsteroidHit;
+    public event System.Action PlayerHit;
     [SerializeField] private GameSettingsReference gameStatus;
     [SerializeField] private GameObject[] asteroidPrefabs;
     private Camera gameCamera;
@@ -46,8 +48,13 @@ public class AsteroidGenerator : MonoBehaviour
             Vector3 randomPosition = GetRandomPositionOutsideScreen();
             GameObject asteroid = Instantiate(asteroidPrefabs[randomIndex], randomPosition, Quaternion.identity, transform);
             asteroid.name = $"{asteroidPrefabs[randomIndex].name} {i}";
-            float asteroidMovementSpeed = Random.Range(0.00001f, 0.5f);
-            float asteroidRotationSpeed = Random.Range(3f, 50f);
+
+            AsteroidData asteroidInfo = new AsteroidData();
+            asteroidInfo.AsteroidLifespan = 10f;
+            asteroidInfo.AsteroidMovementSpeed = Random.Range(0.00001f, 0.5f);
+            asteroidInfo.AsteroidRotationSpeed = Random.Range(3f, 50f);
+            asteroidInfo.GivenDirection = GetRandomPositionInsideScreen();
+
             int asteroidRotationOrientation;
             if (Random.value > 0.5f)
             {
@@ -57,8 +64,9 @@ public class AsteroidGenerator : MonoBehaviour
             {
                 asteroidRotationOrientation = -1;
             }
-
-            asteroid.GetComponent<AsteroidBehaviour>().Setup(10f,asteroidMovementSpeed, asteroidRotationSpeed, asteroidRotationOrientation, GetRandomPositionInsideScreen());
+            asteroidInfo.AsteroidOrientation = asteroidRotationOrientation;
+            
+            asteroid.GetComponent<AsteroidBehaviour>().Setup(this, asteroidInfo);
         }
     }
 
@@ -107,5 +115,15 @@ public class AsteroidGenerator : MonoBehaviour
         Vector3 worldPosition = gameCamera.ScreenToWorldPoint(screenPosition);
 
         return worldPosition;
+    }
+
+    public void AsteroidDestroyed()
+    {
+        AsteroidHit.Invoke();
+    }
+
+    public void PlayerCollission()
+    {
+        PlayerHit.Invoke();
     }
 }

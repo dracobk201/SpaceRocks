@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
-    public event Action<Vector2> movementAction;
-    public event Action<Vector2> aimAction;
-    public event Action shootAction;
+    public event Action<Vector2> MovementAction;
+    public event Action<Vector2> AimAction;
+    public event Action ShootAction;
     private GameControls inputActions;
     private Camera mainCamera;
 
@@ -36,19 +36,19 @@ public class InputController : MonoBehaviour
 
     private void CheckingShootAction(InputAction.CallbackContext context)
     {
-        shootAction?.Invoke();
+        ShootAction?.Invoke();
     }
 
     private void CheckingAimAction()
     {
         Vector2 aimValue = inputActions.Game.Look.ReadValue<Vector2>();
         aimValue = mainCamera.ScreenToWorldPoint(aimValue);
-        aimAction?.Invoke(aimValue);
+        AimAction?.Invoke(aimValue);
     }
 
     private void CheckingMovementAction()
     {
         Vector2 movementValue = inputActions.Game.Movement.ReadValue<Vector2>();
-        movementAction?.Invoke(movementValue);
+        MovementAction?.Invoke(movementValue);
     }
 }

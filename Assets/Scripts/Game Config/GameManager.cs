@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [Header("Input and Player")]
     [SerializeField] private TimeController timeController;
     [SerializeField] private InputController inputController;
+    [SerializeField] private AudioController audioController;
     [SerializeField] private AsteroidGenerator asteroidGenerator;
     [SerializeField] private PlayerWeapon playerWeapon;
     [SerializeField] private PlayerMovement playerMovement;
@@ -18,36 +19,43 @@ public class GameManager : MonoBehaviour
         gameStatus.Restart();
         uiController.ShowHidePanel(UIPanel.None);
     }
+    private void Start()
+    {
+        uiController.ShowHidePanel(UIPanel.MainMenu);
+        audioController.PlayBGMGame();
+    }
 
     private void Update()
     {
         if (gameStatus.ActualLife <=  0 && !gameStatus.Status.Equals(GameStatus.GameOver))
         {
             gameStatus.Status = GameStatus.GameOver;
+            audioController.PlaySFXDead();
             uiController.ShowHidePanel(UIPanel.GameOver);
         }
     }
 
     private void OnEnable()
     {
-        inputController.shootAction += playerWeapon.Shoot;
-        inputController.movementAction += playerMovement.Moving;
-        inputController.aimAction += playerMovement.Aiming;
+        inputController.ShootAction += playerWeapon.Shoot;
+        inputController.ShootAction += audioController.PlaySFXShoot;
+        inputController.MovementAction += playerMovement.Moving;
+        inputController.AimAction += playerMovement.Aiming;
         timeController.OnTimeEnded += TimeEndedHandle;
+        asteroidGenerator.AsteroidHit += audioController.PlaySFXAsteroidImpact;
+        asteroidGenerator.PlayerHit += audioController.PlaySFXPlayerImpact;
     }
 
 
     private void OnDisable()
     {
-        inputController.shootAction -= playerWeapon.Shoot;
-        inputController.movementAction -= playerMovement.Moving;
-        inputController.aimAction -= playerMovement.Aiming;
+        inputController.ShootAction -= playerWeapon.Shoot;
+        inputController.ShootAction -= audioController.PlaySFXShoot;
+        inputController.MovementAction -= playerMovement.Moving;
+        inputController.AimAction -= playerMovement.Aiming;
         timeController.OnTimeEnded -= TimeEndedHandle;
-    }
-
-    private void Start()
-    {
-        uiController.ShowHidePanel(UIPanel.MainMenu);
+        asteroidGenerator.AsteroidHit -= audioController.PlaySFXAsteroidImpact;
+        asteroidGenerator.PlayerHit -= audioController.PlaySFXPlayerImpact;
     }
 
     private void TimeEndedHandle()
