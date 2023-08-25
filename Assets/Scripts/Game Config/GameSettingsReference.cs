@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Game Settings", menuName = "ScriptableObjects/Game Settings Data")]
@@ -16,6 +17,7 @@ public class GameSettingsReference : ScriptableObject
     public int AsteroidsDestroyed;
     public bool InCombo;
     public float PointsMultiplier;
+    public List<string> currentLeaderboard;
 
     public void Restart()
     {

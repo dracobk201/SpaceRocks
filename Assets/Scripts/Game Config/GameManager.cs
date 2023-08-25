@@ -1,13 +1,13 @@
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameSettingsReference gameStatus;
-    [Header("Input and Player")]
+    [Header("Controllers")]
     [SerializeField] private TimeController timeController;
     [SerializeField] private InputController inputController;
     [SerializeField] private AudioController audioController;
+    [SerializeField] private PlayFabController playFabController;
     [SerializeField] private AsteroidGenerator asteroidGenerator;
     [SerializeField] private PlayerWeapon playerWeapon;
     [SerializeField] private PlayerMovement playerMovement;
@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
     {
         gameStatus.Restart();
         uiController.ShowHidePanel(UIPanel.None);
+        playFabController.Login();
     }
+
     private void Start()
     {
         uiController.ShowHidePanel(UIPanel.MainMenu);
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
             gameStatus.Status = GameStatus.GameOver;
             audioController.PlaySFXDead();
             uiController.ShowHidePanel(UIPanel.GameOver);
+            playFabController.SendLeaderboard(gameStatus.ActualPoints);
         }
     }
 
@@ -44,8 +47,8 @@ public class GameManager : MonoBehaviour
         timeController.OnTimeEnded += TimeEndedHandle;
         asteroidGenerator.AsteroidHit += audioController.PlaySFXAsteroidImpact;
         asteroidGenerator.PlayerHit += audioController.PlaySFXPlayerImpact;
+        uiController.OnBeginGame += playFabController.Login;
     }
-
 
     private void OnDisable()
     {
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
         timeController.OnTimeEnded -= TimeEndedHandle;
         asteroidGenerator.AsteroidHit -= audioController.PlaySFXAsteroidImpact;
         asteroidGenerator.PlayerHit -= audioController.PlaySFXPlayerImpact;
+        uiController.OnBeginGame -= playFabController.Login;
     }
 
     private void TimeEndedHandle()

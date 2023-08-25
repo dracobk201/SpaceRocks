@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class GameOverPanelBehaviour : BaseUI
 {
     [SerializeField] private Button quitButton;
-    [SerializeField] private TMP_Text resultsText;
+    [SerializeField] private TMP_Text playerResultsText;
+    [SerializeField] private TMP_Text rankingResultsText;
     private bool setupDone;
 
     private void Awake()
@@ -36,7 +37,13 @@ public class GameOverPanelBehaviour : BaseUI
 
     private void ShowResults()
     {
-        resultsText.text = $"Points: {gameStatus.ActualPoints:n0}";
+        playerResultsText.text = $"Points: {gameStatus.ActualPoints:n0}";
+        rankingResultsText.text = string.Empty;
+
+        foreach (var leadeboardResult in gameStatus.currentLeaderboard)
+        {
+            rankingResultsText.text += $"{leadeboardResult}\n";
+        }
     }
 
     private void OnQuitButton()
