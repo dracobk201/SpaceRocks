@@ -17,9 +17,16 @@ public class GameSettingsReference : ScriptableObject
     public int AsteroidsDestroyed;
     public bool InCombo;
     public float PointsMultiplier;
-    
     public List<string> currentLeaderboard;
 
+    [Header("Camera Shake Variables")]
+    public float lowShakeMagnitude;
+    public float heavyShakeMagnitude;
+    public float lowShakeDuration;
+    public float heavyShakeDuration;
+    public float shakeDampingSpeed;
+        
+    [Header("Movement Lock Variables")]
     public bool upLock;
     public bool downLock;
     public bool rightLock;

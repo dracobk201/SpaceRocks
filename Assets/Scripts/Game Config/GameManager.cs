@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TimeController timeController;
     [SerializeField] private InputController inputController;
     [SerializeField] private AudioController audioController;
+    [SerializeField] private ScreenshakeController screenshakeController;
     [SerializeField] private PlayFabController playFabController;
     [SerializeField] private AsteroidGenerator asteroidGenerator;
     [SerializeField] private PlayerWeapon playerWeapon;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         timeController.OnTimeEnded += TimeEndedHandle;
         asteroidGenerator.AsteroidHit += audioController.PlaySFXAsteroidImpact;
         asteroidGenerator.PlayerHit += audioController.PlaySFXPlayerImpact;
+        asteroidGenerator.PlayerHit += screenshakeController.TriggerSimpleShake;
         uiController.OnBeginGame += playFabController.Login;
     }
 
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
         timeController.OnTimeEnded -= TimeEndedHandle;
         asteroidGenerator.AsteroidHit -= audioController.PlaySFXAsteroidImpact;
         asteroidGenerator.PlayerHit -= audioController.PlaySFXPlayerImpact;
+        asteroidGenerator.PlayerHit -= screenshakeController.TriggerSimpleShake;
         uiController.OnBeginGame -= playFabController.Login;
     }
 

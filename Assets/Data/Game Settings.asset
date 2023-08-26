@@ -15,10 +15,20 @@ MonoBehaviour:
   MaxTime: 90
   MaxLife: 50
   MaxMultiplier: 5
-  Status: 3
-  ActualTime: 64.14933
-  ActualLife: -5
-  ActualPoints: 75060
-  AsteroidsDestroyed: 27
-  InCombo: 1
-  PointsMultiplier: 0.27
+  Status: 1
+  ActualTime: 79.77669
+  ActualLife: 36
+  ActualPoints: 0
+  AsteroidsDestroyed: 0
+  InCombo: 0
+  PointsMultiplier: 0
+  currentLeaderboard: []
+  lowShakeMagnitude: 0.1
+  heavyShakeMagnitude: 0.5
+  lowShakeDuration: 0.05
+  heavyShakeDuration: 0.1
+  shakeDampingSpeed: 0.1
+  upLock: 0
+  downLock: 0
+  rightLock: 0
+  leftLock: 0
