@@ -13,7 +13,6 @@ public class AsteroidBehaviour : MonoBehaviour
     public void Setup(AsteroidGenerator generator, AsteroidData data)
     {
         asteroidData = new AsteroidData();
-        Debug.Log(data.AsteroidLifespan);
         asteroidGenerator = generator;
         asteroidData.AsteroidLifespan = data.AsteroidLifespan;
         asteroidData.AsteroidMovementSpeed = data.AsteroidMovementSpeed;

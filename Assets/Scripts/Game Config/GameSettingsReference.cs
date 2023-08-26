@@ -17,7 +17,13 @@ public class GameSettingsReference : ScriptableObject
     public int AsteroidsDestroyed;
     public bool InCombo;
     public float PointsMultiplier;
+    
     public List<string> currentLeaderboard;
+
+    public bool upLock;
+    public bool downLock;
+    public bool rightLock;
+    public bool leftLock;
 
     public void Restart()
     {
@@ -28,6 +34,10 @@ public class GameSettingsReference : ScriptableObject
         AsteroidsDestroyed = 0;
         InCombo = false;
         PointsMultiplier = 0;
+        upLock = false;
+        downLock = false;
+        rightLock = false;
+        leftLock = false;
     }
 
     public void CutCombo()
