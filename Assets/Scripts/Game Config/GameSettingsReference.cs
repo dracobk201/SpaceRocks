@@ -11,6 +11,8 @@ public class GameSettingsReference : ScriptableObject
 
     [Header("Updatable Variables")]
     public GameStatus Status;
+    public float BGMVolume;
+    public float SFXVolume;
     public float ActualTime;
     public int ActualLife;
     public int ActualPoints;

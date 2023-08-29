@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+    [SerializeField] private GameSettingsReference gameStatus;
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmAudioSource;
     [SerializeField] private AudioSource playerSfxAudioSource;
@@ -43,6 +44,13 @@ public class AudioController : MonoBehaviour
         asteroidSfxAudioSource.Stop();
         asteroidSfxAudioSource.clip = soundSfx;
         asteroidSfxAudioSource.Play();
+    }
+
+    public void ChangeVolume()
+    {
+        bgmAudioSource.volume = gameStatus.BGMVolume;
+        playerSfxAudioSource.volume = gameStatus.SFXVolume;
+        asteroidSfxAudioSource.volume = gameStatus.SFXVolume / 2;
     }
 
     public void PlayBGMGame()

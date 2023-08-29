@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     public event Action OnBeginGame;
+    public event Action OnSettingsChanged;
     [SerializeField] private GameSettingsReference gameStatus;
     [SerializeField] private List<BaseUI> uiPanels;
 
@@ -42,6 +43,11 @@ public class UIController : MonoBehaviour
 
             uiPanels[index].ShowHideCanvasGroup(true);
         }
+    }
+
+    public void SettingsChanged()
+    {
+        OnSettingsChanged.Invoke();
     }
 
     public void BeginGame()

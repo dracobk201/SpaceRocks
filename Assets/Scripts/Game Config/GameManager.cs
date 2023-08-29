@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         asteroidGenerator.PlayerHit += audioController.PlaySFXPlayerImpact;
         asteroidGenerator.PlayerHit += screenshakeController.TriggerSimpleShake;
         uiController.OnBeginGame += playFabController.Login;
+        uiController.OnSettingsChanged += audioController.ChangeVolume;
     }
 
     private void OnDisable()
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         asteroidGenerator.PlayerHit -= audioController.PlaySFXPlayerImpact;
         asteroidGenerator.PlayerHit -= screenshakeController.TriggerSimpleShake;
         uiController.OnBeginGame -= playFabController.Login;
+        uiController.OnSettingsChanged -= audioController.ChangeVolume;
     }
 
     private void TimeEndedHandle()
